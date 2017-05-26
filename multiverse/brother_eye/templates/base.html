@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Brother Eye</title>
+  </head>
+  <body>
+
+  <div class="container">
+
+{% if not request.user.is_authenticated %}
+<p>
+<h3>Not logged in • <a href="{% url 'login' %}">Login</a> • <a href="{% url 'user_create_view' %}">Create account</a></h3>
+</p>
+{% else %}
+
+    <p> <h3>Welcome, {{ request.user }}</h3></p>
+    <a href="{% url 'logout' %}?next={% url 'index_view' %}">Log out</a>
+
+{% endif %}
+<hr>
+  {% block content %}
+  {% endblock %}
+
+  </div>
+
+</body>
+</html>
